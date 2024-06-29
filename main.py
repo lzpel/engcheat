@@ -3,15 +3,20 @@ import datetime
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.action_chains import ActionChains
-import os, sys, time, re
+import os, shutil, time, re
 
 
 # Selenium初期化
+def refresh_output():
+    path_download = os.path.abspath(os.path.join(__file__, "..", "output"))
+    shutil.rmtree(path_download)
+    os.mkdir(path_download)
+    return path_download
+
+
 def create_driver():
     options = webdriver.ChromeOptions()
-    prefs = {
-        "download.default_directory": 'C:/Users/smith/Downloads',
-    }
+    prefs = {"download.default_directory": refresh_output()}
     options.add_experimental_option("prefs", prefs)
     return webdriver.Chrome(options=options)
 
@@ -95,7 +100,7 @@ def switch(element, set_bool):
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
     # test()
-    driver = webdriver.Chrome()
+    driver = create_driver()
     article(
         driver,
         "https://eikaiwa.dmm.com/app/daily-news/article/walking-tree-is-new-zealands-tree-of-the-year/Cav8JCp9Ee-2tBMFdAOKzA"
