@@ -5,6 +5,8 @@ name = "pypi"
 
 [packages]
 selenium = "*"
+xhtml2pdf = "*"
+pypdf = "*"
 
 [dev-packages]
 

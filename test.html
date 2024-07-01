@@ -1,0 +1,27 @@
+<html>
+<head>
+    <style type="text/css">
+        @font-face {
+          font-family: "my_lang";
+          src: url("font/ipam.ttf");
+        }
+        html, body {
+          font-family: "my_lang";
+        }
+        span{
+            overflow-wrap: break-word; -pdf-keep-with-next: true;
+        }
+    </style>
+</head>
+<body>
+{% for exercise in content %}
+{% for pair in exercise %}
+    <p style="margin:0;">
+        <span>{{ pair.0 }}</span>
+        <br/>
+        <span>{{ pair.1 }}</span>
+    </p>
+{% endfor %}
+{% endfor %}
+</body>
+</html>

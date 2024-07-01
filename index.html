@@ -1,0 +1,29 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <style type="text/css">
+        @font-face {
+          font-family: "my_lang";
+          src: url("font/ipam.ttf");
+        }
+        html, body {
+            font-family: "my_lang";
+        }
+        .cjk{
+            overflow-wrap: break-word;
+            -pdf-keep-with-next: true;
+            -pdf-word-wrap: CJK;
+        }
+    </style>
+</head>
+<body>
+{% for exercise in content %}
+{% for pair in exercise %}
+<div style="margin:0;">
+    <div>{{ pair.0 }}</div>
+    <div class="cjk">{{ pair.1 }}</div>
+</div>
+{% endfor %}
+{% endfor %}
+</body>
+</html>
