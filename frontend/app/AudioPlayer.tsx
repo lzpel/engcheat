@@ -28,9 +28,11 @@ export default function AudioPlayer(props: {
 				//必要な再生を開始する
 				if(v.id==idFromIndex(action.index)){
 					if(isAudioPlaying(v)){
+						v.playbackRate=action.muted?0.6:1
 						scrollToNormalizedPosition(v.currentTime/v.duration)
 					}else{
 						v.play()
+						v.currentTime=0
 					}
 				}
 				//必要な再生を開始する
@@ -53,7 +55,7 @@ export default function AudioPlayer(props: {
 	}, [internalState]);
 	const audiolist=props.audiolist.map((v, index)=><div key={index}>
 		<div>{v.path}</div>
-		<audio id={idFromIndex(index)} controls muted={action.index==index && action.muted} autoPlay={action.index==index}>
+		<audio id={idFromIndex(index)} controls muted={action.index==index && action.muted}>
 			<source src={v.path} type="audio/mpeg"/>
 			This browser do not support audio element
 		</audio>
@@ -62,17 +64,17 @@ export default function AudioPlayer(props: {
 		return <Script key={v.path} json={JSON.parse(v.config)}/>
 	})
 	return <>
-		<div style={{position: "sticky", bottom:0, left: 0}}>
-			<Switch value={switchState} setValue={setSwitchState}>show script</Switch>
-			<button onClick={()=>nextState(setInternalState, -1)}>{"<<"}</button>
-			<button onClick={()=>nextState(setInternalState, +1)}>{">>"}</button>
-			offset={offset()} state({internalState})={JSON.stringify(action)}
-		</div>
 		<div hidden={switchState==true}>
 			{audiolist}
 		</div>
 		<div hidden={switchState==false}>
 			{script}
+		</div>
+		<div style={{position: "sticky", bottom:0, left: 0}}>
+			<Switch value={switchState} setValue={setSwitchState}>show script</Switch>
+			<button onClick={()=>nextState(setInternalState, -1)}>{"<<"}</button>
+			<button onClick={()=>nextState(setInternalState, +1)}>{">>"}</button>
+			offset={offset()} state({internalState})={JSON.stringify(action)}
 		</div>
 	</>
 }
