@@ -1,20 +1,20 @@
-import getDaysFromDate from "@/src/daysFromDate";
-import { find } from "@/src/find";
-
+import find, {FoundEntry, readDirentTextSync} from "@/src/find";
+import AudioPlayer, {Audio} from "@/app/AudioPlayer";
 export default function Home() {
-	const audio_list=find("./public/out/", false, {
-		type_d: true
+	const audiolist=find("./public/out", false)
+	.map(v=>{
+		const path=uriFromEntry(v)
+		const r: Audio={
+			path: `${path}/out.mp3`,
+			config: readDirentTextSync(v, "out.json")
+		}
+		return r
 	})
 	return <>
-		<div>{getDaysFromDate(new Date("2025-07-24"))}</div>
-	{audio_list.map(v=>encodeURI(`${process.env.NEXT_PUBLIC_PREFIX}/out/${v.name}/out.mp3`)).map(v=>
-		<>
-			<div key={`${v}title`}>{v}</div>
-			<audio key={`${v}audio`} controls>
-				<source src={v} type="audio/mpeg"/>
-				This browser do not support audio element
-			</audio>
-		</>
-	)}
+		<AudioPlayer audiolist={audiolist}/>
 	</>
+}
+function uriFromEntry(entry: FoundEntry):string{
+	const path=entry.parentPath.replace(/(?:.*\/)?public\//, '');
+	return encodeURI(`${process.env.NEXT_PUBLIC_PREFIX}/${path}/${entry.name}`)
 }
