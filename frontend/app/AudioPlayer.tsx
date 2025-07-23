@@ -62,7 +62,7 @@ export default function AudioPlayer(props: {
 		return <Script key={v.path} json={JSON.parse(v.config)}/>
 	})
 	return <>
-		<div style={{position: "sticky", top:0, left: 0}}>
+		<div style={{position: "sticky", bottom:0, left: 0}}>
 			<Switch value={switchState} setValue={setSwitchState}>show script</Switch>
 			<button onClick={()=>nextState(setInternalState, -1)}>{"<<"}</button>
 			<button onClick={()=>nextState(setInternalState, +1)}>{">>"}</button>
