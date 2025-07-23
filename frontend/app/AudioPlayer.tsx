@@ -49,7 +49,7 @@ export default function AudioPlayer(props: {
 		</audio>
 	</div>)
 	const script=props.audiolist.filter((_,index)=>index==action.index).map((v,index)=>{
-		return <Script json={JSON.parse(v.config)}/>
+		return <Script key={v.path} json={JSON.parse(v.config)}/>
 	})
 	return <>
 		<div style={{position: "sticky", top:0, left: 0}}>
