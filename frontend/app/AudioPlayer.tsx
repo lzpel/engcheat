@@ -23,8 +23,19 @@ export default function AudioPlayer(props: {
 	React.useEffect(() => {
 		const checkPlayingAudios = () => {
 			const audios = Array.from(document.querySelectorAll('audio')) as HTMLAudioElement[];
-			const playing = audios.filter(audio => !audio.paused && !audio.ended && audio.error == null);
-			//必要な再生を開始する
+			const playing = audios.filter(isAudioPlaying);
+			audios.forEach(v=>{
+				//必要な再生を開始する
+				if(v.id==idFromIndex(action.index)){
+					if(isAudioPlaying(v)){
+						scrollToNormalizedPosition(v.currentTime/v.duration)
+					}else{
+						v.play()
+					}
+				}
+				//必要な再生を開始する
+				if(v.id!=idFromIndex(action.index) && isAudioPlaying(v)==true)v.pause()
+			})
 			if(playing.every(v=>v.id!=idFromIndex(action.index))){
 				audios.filter(v=>v.id==idFromIndex(action.index)).forEach(v=>v.play())
 			}
@@ -36,7 +47,6 @@ export default function AudioPlayer(props: {
 			if(playing.length==0){
 				nextState(setInternalState,+1)
 			}
-			console.log(playing.map(v=>v.id))
 		};
 		const interval = setInterval(checkPlayingAudios, 1000); // 0.5秒ごとにチェック
 		return () => clearInterval(interval);
@@ -65,6 +75,18 @@ export default function AudioPlayer(props: {
 			{script}
 		</div>
 	</>
+}
+function scrollToNormalizedPosition(ratio: number) {
+  // 範囲を0〜1にクリップ
+  const clamped = Math.max(0, Math.min(1, ratio));
+  // ドキュメント全体のスクロール可能な高さ
+  const scrollableHeight = document.documentElement.scrollHeight - window.innerHeight;
+  if (scrollableHeight <= 0) return;
+  const targetY = clamped * scrollableHeight;
+  window.scrollTo({ top: targetY, behavior: 'smooth' });
+}
+function isAudioPlaying(audio: HTMLAudioElement): boolean{
+	return !audio.paused && !audio.ended && audio.error == null
 }
 function idFromIndex(index: number){
 	return `audio${index}`
