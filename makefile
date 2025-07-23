@@ -3,6 +3,7 @@ SHELL := bash
 create:
 	bash -c "$${create}"
 generate:
+	OUT=frontend/public/out ; rm -rf $${OUT} && cp -r dmm/paper $${OUT}
 	bash -c "$${make_dirs}"
 run:
 	parallel=1 bash -c "$${make_dirs}"
