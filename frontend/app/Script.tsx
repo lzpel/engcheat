@@ -17,7 +17,5 @@ export default function Script(props: {
 	</div>
 }
 function OneThirdHeightDiv() {
-  return (
-    <div style={{ height: '33.333vh', backgroundColor: '#f0f0f0' }}></div>
-  );
+	return <div style={{ height: '33.333vh', backgroundColor: '#f0f0f0' }}></div>
 }

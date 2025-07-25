@@ -23,6 +23,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
 	return <html lang="en" style={fullHeight}>
+		<head>
+			<link rel="icon" href={`${process.env.NEXT_PUBLIC_PREFIX}/favicon.ico`} />
+		</head>
 		<body className={`${geistSans.variable} ${geistMono.variable}`} style={fullHeight}>
 			{children}
 		</body>
