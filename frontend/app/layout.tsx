@@ -1,3 +1,4 @@
+import fullHeight from "@/src/fullHeight";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 
@@ -21,9 +22,9 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-	return <html lang="en">
-		<body className={`${geistSans.variable} ${geistMono.variable}`}>
-		{children}
+	return <html lang="en" style={fullHeight}>
+		<body className={`${geistSans.variable} ${geistMono.variable}`} style={fullHeight}>
+			{children}
 		</body>
 	</html>
 }

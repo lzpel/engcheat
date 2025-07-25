@@ -1,10 +1,11 @@
 type SentencePair=[string,string]
 export default function Script(props: {
+	fontSize: number
 	json: [string,string][][]
 }) {
 	// すべての文章ペアを平坦化
 	const sentencePairs: SentencePair[] = props.json[0];
-	return <div>
+	return <div style={{fontSize: `${props.fontSize}px`}}>
 		<OneThirdHeightDiv/>
 		{sentencePairs.map(([en, ja], index) => (
 		<div key={index}>

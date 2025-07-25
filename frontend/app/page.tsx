@@ -10,9 +10,7 @@ export default function Home() {
 		}
 		return r
 	})
-	return <>
-		<AudioPlayer audiolist={audiolist}/>
-	</>
+	return <AudioPlayer audiolist={audiolist}/>
 }
 function uriFromEntry(entry: FoundEntry):string{
 	const path=entry.parentPath.replace(/(?:.*\/)?public\//, '');
