@@ -1,5 +1,5 @@
 import find, {FoundEntry, readDirentTextSync} from "@/src/find";
-import AudioPlayer, {Audio} from "@/app/AudioPlayer";
+import AudioPlayer, {Audio} from "@/ui/AudioPlayer";
 export default function Home() {
 	const audiolist=find("./public/out", false)
 	.map(v=>{

@@ -2,7 +2,7 @@
 import getDaysFromDate from "@/src/daysFromDate";
 import React from "react";
 import { useState } from "react";
-import Switch, { SwitchState } from "@/app/Swtich";
+import Switch, { SwitchState } from "@/ui/Swtich";
 import Script from "./Script";
 import {fullHeightFlex, InnerScroll} from "@/src/fullHeight";
 

@@ -1,12 +1,13 @@
-MAKEDIRS := frontend 
+MAKEDIRS := audio frontend 
 SHELL := bash
 create:
 	bash -c "$${create}"
 generate:
-	OUT=frontend/public/out ; rm -rf $${OUT} && mkdir -p $${OUT} && cp -r dmm/paper/. $${OUT}/
+	rm -rf out && cp -r fetch out
 	bash -c "$${make_dirs}"
+	tar -czvf out.tgz -C out .
 run:
-	parallel=1 bash -c "$${make_dirs}"
+	bash -c "$${make_dirs}"
 deploy:
 	bash -c "$${make_dirs}"
 clean:
