@@ -4,3 +4,5 @@ generate:
 	bash -c "$${MAKE_RECURSIVE}"
 run:
 	bash -c "$${MAKE_RECURSIVE}"
+deploy:
+	bash -c "$${MAKE_RECURSIVE}"
