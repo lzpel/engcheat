@@ -3,8 +3,8 @@ import { NuqsAdapter } from 'nuqs/adapters/next/app';
 import './globals.css';
 
 export const metadata: Metadata = {
-  title: 'English Learning',
-  description: 'Learn English with synced audio processing',
+  title: 'engcheat',
+  description: 'engcheat - English learning with synced audio',
 };
 
 export default function RootLayout({
