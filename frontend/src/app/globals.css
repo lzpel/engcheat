@@ -1,0 +1,54 @@
+@import "tailwindcss";
+@config "../../tailwind.config.mjs";
+
+:root {
+  --palette-primary-main: 25 118 210;
+  --palette-primary-contrastText: 255 255 255;
+  --palette-primary-light: 66 165 245;
+  --palette-primary-dark: 21 101 192;
+
+  --palette-secondary-main: 156 39 176;
+  --palette-secondary-contrastText: 255 255 255;
+  --palette-secondary-light: 186 104 200;
+  --palette-secondary-dark: 123 31 162;
+
+  --palette-error-main: 211 47 47;
+  --palette-error-contrastText: 255 255 255;
+  --palette-error-light: 239 83 80;
+  --palette-error-dark: 198 40 40;
+
+  --palette-warning-main: 237 108 2;
+  --palette-warning-contrastText: 255 255 255;
+  --palette-warning-light: 255 152 0;
+  --palette-warning-dark: 230 81 0;
+
+  --palette-info-main: 2 136 209;
+  --palette-info-contrastText: 255 255 255;
+  --palette-info-light: 3 169 244;
+  --palette-info-dark: 1 87 155;
+
+  --palette-success-main: 46 125 50;
+  --palette-success-contrastText: 255 255 255;
+  --palette-success-light: 76 175 80;
+  --palette-success-dark: 27 94 32;
+
+  --palette-text-primary: 0 0 0;
+  --palette-text-secondary: 0 0 0;
+  --palette-text-disabled: 0 0 0;
+
+  --palette-background-default: 238 242 246; /* A slight light gray/blue elegant background */
+  --palette-background-paper: 255 255 255;
+
+  --palette-divider: 0 0 0;
+
+  --palette-action-hover: 0 0 0;
+  --palette-action-selected: 0 0 0;
+  --palette-action-disabled: 0 0 0;
+  --palette-action-disabledBackground: 0 0 0;
+  --palette-action-focus: 0 0 0;
+}
+
+body {
+  background-color: rgb(var(--palette-background-default));
+  color: rgb(var(--palette-text-primary) / 0.87);
+}
