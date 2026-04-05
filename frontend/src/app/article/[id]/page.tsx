@@ -1,5 +1,6 @@
 import fs from 'fs';
 import path from 'path';
+import { Suspense } from 'react';
 import { ArticleReader, ArticleData } from '../../../components/ArticleReader';
 
 export function generateStaticParams() {
@@ -31,28 +32,35 @@ export default async function ArticlePage(props: { params: Promise<{ id: string 
     console.error(`Failed to read data for ${id}:`, err);
   }
 
-  // Determine the next article id
-  let nextArticleId: string | null = null;
+  // Build full sorted article list
+  let allArticleIds: string[] = [];
+  let currentIndex = 0;
   try {
     const entries = fs.readdirSync(publicDir, { withFileTypes: true });
-    const sortedArticles = entries
+    allArticleIds = entries
       .filter(dirent => dirent.isDirectory())
       .map(dirent => dirent.name)
       .sort((a, b) => a.localeCompare(b));
-      
-    const currentIndex = sortedArticles.indexOf(id);
-    if (currentIndex !== -1 && currentIndex < sortedArticles.length - 1) {
-      nextArticleId = sortedArticles[currentIndex + 1];
-    }
+    currentIndex = allArticleIds.indexOf(id);
   } catch(e) {
     // Ignore
   }
 
+  const nextArticleId = currentIndex !== -1 && currentIndex < allArticleIds.length - 1
+    ? allArticleIds[currentIndex + 1]
+    : null;
+
   const data: ArticleData = {
     id,
     json: jsonContent,
-    nextArticleId
+    nextArticleId,
+    allArticleIds,
+    currentIndex,
   };
 
-  return <ArticleReader data={data} />;
+  return (
+    <Suspense>
+      <ArticleReader data={data} />
+    </Suspense>
+  );
 }

@@ -1,6 +1,8 @@
 import fs from 'fs';
 import path from 'path';
 import Link from 'next/link';
+import { Suspense } from 'react';
+import { AutoRedirect } from '../components/AutoRedirect';
 
 function getArticles() {
   const publicDir = path.join(process.cwd(), 'public');
@@ -20,6 +22,9 @@ export default function Home() {
 
   return (
     <main className="max-w-4xl mx-auto py-12 px-6">
+      <Suspense>
+        <AutoRedirect allArticleIds={articles} />
+      </Suspense>
       <header className="mb-12 text-center">
         <h1 className="text-4xl font-extrabold tracking-tight text-primary-main mb-4">
           English Learning

@@ -1,8 +1,10 @@
 node_modules/
 .next
 public/
+!public/favicon.*
 ##
 ##
 AGENTS.md
 CLAUDE.md
 *.config.*
+next-env.d.ts
